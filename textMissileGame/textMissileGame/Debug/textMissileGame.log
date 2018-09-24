@@ -1,0 +1,4 @@
+﻿  main.cpp
+g:\textmissilegame\textmissilegame\main.cpp(14): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+g:\textmissilegame\textmissilegame\main.cpp(95): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  textMissileGame.vcxproj -> G:\textMissileGame\Debug\textMissileGame.exe
