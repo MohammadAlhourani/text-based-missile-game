@@ -7,7 +7,7 @@
 
 float acquireTarget(unsigned int t_target[], Enemy &t_enemy);
 void makeLaunchCode(unsigned int &t_code);
-bool collision(Missile &t_warhead,Enemy t_enemy);
+bool collision(Missile &t_warhead,Enemy t_enemy,  int &t_fuel);
 
 int main()
 {
@@ -24,7 +24,7 @@ int main()
 
 	unsigned int Target[2];
 
-	unsigned int fuel = 0;
+	int fuel = 0;
 
 	float distanceToTarget = 0;
 
@@ -45,13 +45,18 @@ int main()
 		else
 		{
 			missileType = 2;
-			std::cout << "excuse me, that is not a missile type try again" << std::endl;
+			std::cout << "that is not a missile type try again" << std::endl;
 		}
 	}
 
-	ceil(distanceToTarget = acquireTarget(Target, target));
+	static_cast<int> (distanceToTarget = acquireTarget(Target, target));
 
-	std::cout << "target is " <<
+	std::cout << "target is " << distanceToTarget << " meters away" << std::endl;
+
+	std::cout << "input how much fuel you want to use (1 fuel = 2 meters)" << std::endl;
+
+	std::cin >> fuel;
+
 	makeLaunchCode(launchCode);
 
 	while (inputCode != launchCode)
@@ -71,7 +76,7 @@ int main()
 		}
 	}
 
-	if (collision(warhead, target) == true)
+	if (collision(warhead, target,fuel) == true)
 	{
 		std::cout << "target has been destroyed well done " << std::endl;
 	}
@@ -86,9 +91,9 @@ int main()
 
 float acquireTarget(unsigned int t_target[], Enemy &t_enemy)
 {
-	float distance = 0;
+	int distance = 0;
 
-	t_target[0] = rand() % 50 + 1;
+	t_target[0] = rand() % 1000 + 1;
 	t_target[1] = t_target[0] * 2;
 
 	t_enemy.coordinates.x = t_target[0];
@@ -104,19 +109,21 @@ void makeLaunchCode(unsigned int &t_code)
 	t_code = rand() % 8999 + 1000;
 }
 
-bool collision(Missile &t_warhead, Enemy t_enemy)
+bool collision(Missile &t_warhead, Enemy t_enemy, int &t_fuel)
 {
 	bool collision = false;
 
 	while (t_warhead.coordinates.x <= t_enemy.coordinates.x &&
 		t_warhead.coordinates.y <= t_enemy.coordinates.y &&
-		t_warhead.armed == true && collision == false)
+		t_warhead.armed == true && collision == false
+		|| t_fuel >= -5)
 	{
 		t_warhead.update();
+		t_fuel -= 2;
 
 		if (t_warhead.coordinates.x == t_enemy.coordinates.x &&
 			t_warhead.coordinates.y == t_enemy.coordinates.y &&
-			t_warhead.armed == true)
+			t_warhead.armed == true && t_fuel > -10)
 		{
 			collision = true;
 		}
