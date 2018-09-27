@@ -7,7 +7,7 @@
 
 float acquireTarget(unsigned int t_target[], Enemy &t_enemy);
 void makeLaunchCode(unsigned int &t_code);
-bool collision(Missile &t_warhead,Enemy t_enemy,  int &t_fuel);
+bool collision(Missile &t_warhead,Enemy t_enemy,  float &t_fuel);
 
 int main()
 {
@@ -24,7 +24,7 @@ int main()
 
 	unsigned int Target[2];
 
-	int fuel = 0;
+	float fuel = 0;
 
 	float distanceToTarget = 0;
 
@@ -109,24 +109,25 @@ void makeLaunchCode(unsigned int &t_code)
 	t_code = rand() % 8999 + 1000;
 }
 
-bool collision(Missile &t_warhead, Enemy t_enemy, int &t_fuel)
+bool collision(Missile &t_warhead, Enemy t_enemy, float &t_fuel)
 {
 	bool collision = false;
 
-	while (t_warhead.coordinates.x <= t_enemy.coordinates.x &&
-		t_warhead.coordinates.y <= t_enemy.coordinates.y &&
-		t_warhead.armed == true && collision == false
-		|| t_fuel >= -5)
+	while (t_fuel > 0)
 	{
-		t_warhead.update();
-		t_fuel -= 2;
+		t_fuel -= 1.115f;
 
-		if (t_warhead.coordinates.x == t_enemy.coordinates.x &&
-			t_warhead.coordinates.y == t_enemy.coordinates.y &&
-			t_warhead.armed == true && t_fuel > -10)
+		if (t_fuel > 0)
 		{
-			collision = true;
+			t_warhead.update();
 		}
+	}
+
+	if (t_warhead.coordinates.x == t_enemy.coordinates.x &&
+		t_warhead.coordinates.y == t_enemy.coordinates.y &&
+		t_warhead.armed == true)
+	{
+		collision = true;
 	}
 
 	if (t_warhead.coordinates.x > t_enemy.coordinates.x ||
