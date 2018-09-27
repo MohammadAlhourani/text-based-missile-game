@@ -2,4 +2,5 @@
 c:\users\c00227505\documents\github\text-based-missile-game\textmissilegame\textmissilegame\main.cpp(14): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
 c:\users\c00227505\documents\github\text-based-missile-game\textmissilegame\textmissilegame\main.cpp(102): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
 c:\users\c00227505\documents\github\text-based-missile-game\textmissilegame\textmissilegame\main.cpp(104): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+  LINK : C:\Users\c00227505\Documents\GitHub\text-based-missile-game\textMissileGame\Debug\textMissileGame.exe not found or not built by the last incremental link; performing full link
   textMissileGame.vcxproj -> C:\Users\c00227505\Documents\GitHub\text-based-missile-game\textMissileGame\Debug\textMissileGame.exe

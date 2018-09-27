@@ -131,9 +131,9 @@ bool collision(Missile &t_warhead, Enemy t_enemy, float &t_fuel)
 	}
 
 	if (t_warhead.coordinates.x >= t_enemy.coordinates.x &&
-		t_warhead.coordinates.x <= t_enemy.coordinates.x + 2 &&
+		t_warhead.coordinates.x <= t_enemy.coordinates.x + 100 &&
 		t_warhead.coordinates.y >= t_enemy.coordinates.y &&
-		t_warhead.coordinates.y <= t_enemy.coordinates.y + 2 &&
+		t_warhead.coordinates.y <= t_enemy.coordinates.y + 100 &&
 		t_warhead.armed == true)
 	{
 		collision = true;
